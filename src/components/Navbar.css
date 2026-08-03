@@ -1,0 +1,58 @@
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 60px;
+
+    background:#201C1C;
+}
+
+.logo img{
+    height:60px;
+    width:auto;
+}
+
+.search-bar{
+    width:280px;
+    height:34px;
+
+    border:none;
+    outline:none;
+
+    border-radius:6px;
+
+    background:#2D2A2A;
+    color:white;
+
+    padding:0 15px;
+
+    font-family: Philosopher;
+}
+
+.search-bar::placeholder{
+    color:#B7B7B7;
+}
+
+.nav-links{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+.nav-links li{
+    color:white;
+
+    font-family: Philosopher;
+    font-size:15px;
+
+    cursor:pointer;
+}
+
+.nav-icons{
+    display:flex;
+    gap:18px;
+
+    color:white;
+    font-size:20px;
+}
