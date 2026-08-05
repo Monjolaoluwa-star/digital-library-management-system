@@ -1,0 +1,24 @@
+.home{
+
+    background:#1F1D1D;
+
+    min-height:100vh;
+}
+
+.main-content{
+
+    max-width:1280px;
+
+    margin:auto;
+
+    display:flex;
+
+    gap:45px;
+
+    padding:45px 60px 80px;
+}
+
+.books-content{
+
+    flex:1;
+}

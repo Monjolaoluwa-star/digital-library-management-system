@@ -1,0 +1,22 @@
+.book-slider {
+
+    width: 100%;
+
+    background: #383232;
+
+    padding: 45px 0 55px;
+}
+
+.book-slider {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 55px;
+}
+
+.book-slider > * {
+
+    flex-shrink: 0;
+}

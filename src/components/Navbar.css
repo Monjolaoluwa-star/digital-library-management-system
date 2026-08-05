@@ -1,58 +1,130 @@
-.navbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:18px 60px;
-
-    background:#201C1C;
+.navbar {
+  width: 100%;
+  background: #2b2525;
 }
 
-.logo img{
-    height:60px;
-    width:auto;
+/* ---------- TOP ---------- */
+
+.navbar-top {
+  max-width: 1260px;
+  height: 70px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.search-bar{
-    width:280px;
-    height:34px;
-
-    border:none;
-    outline:none;
-
-    border-radius:6px;
-
-    background:#2D2A2A;
-    color:white;
-
-    padding:0 15px;
-
-    font-family: Philosopher;
+.empty-space {
+  width: 180px;
 }
 
-.search-bar::placeholder{
-    color:#B7B7B7;
+.search-box {
+  width: 540px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 16px;
+
+  background: #3a3535;
+
+  border-radius: 5px;
 }
 
-.nav-links{
-    display:flex;
-    list-style:none;
-    gap:30px;
+.search-icon {
+  color: #9b9b9b;
+  font-size: 15px;
 }
 
-.nav-links li{
-    color:white;
+.search-box input {
+  flex: 1;
 
-    font-family: Philosopher;
-    font-size:15px;
+  margin-left: 12px;
 
-    cursor:pointer;
+  background: none;
+  border: none;
+  outline: none;
+
+  color: white;
+
+  font-size: 15px;
 }
 
-.nav-icons{
-    display:flex;
-    gap:18px;
+.search-box input::placeholder {
+  color: #9d9d9d;
+}
 
-    color:white;
-    font-size:20px;
+.nav-icons {
+  display: flex;
+  gap: 22px;
+
+  color: white;
+
+  font-size: 22px;
+}
+
+.nav-icons svg {
+  cursor: pointer;
+  transition: .3s;
+}
+
+.nav-icons svg:hover {
+  color: #3b82f6;
+}
+
+/* ---------- BOTTOM ---------- */
+
+.navbar-bottom {
+  max-width: 1260px;
+
+  height: 64px;
+
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 220px;
+}
+
+.logo img {
+  width: 170px;
+  display: block;
+}
+
+/* ---------- LINKS ---------- */
+
+.nav-links {
+  flex: 1;
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 58px;
+
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  color: white;
+
+  font-family: "Philosopher", serif;
+
+  font-size: 17px;
+
+  cursor: pointer;
+
+  transition: .3s;
+}
+
+.nav-links li:hover {
+  color: #3b82f6;
 }

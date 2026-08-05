@@ -1,34 +1,68 @@
 import "./Navbar.css";
 import logo from "../assets/ReadSpherelogo.png";
 
+import {
+  FaSearch,
+  FaBell,
+  FaBookmark,
+  FaUserCircle,
+} from "react-icons/fa";
+
 function Navbar() {
   return (
-   <nav className="navbar">
-  <div className="logo">
-    <img src={logo} alt="ReadSphere Logo" />
-  </div>
+    <header className="navbar">
 
-  <input
-    type="text"
-    placeholder="Search books, authors..."
-    className="search-bar"
-  />
+      {/* Top Row */}
+      <div className="navbar-top">
 
-  <ul className="nav-links">
-    <li>Home</li>
-    <li>Browse</li>
-    <li>Categories</li>
-    <li>Borrowed</li>
-    <li>About</li>
-    <li>Contact</li>
-  </ul>
+        <div className="empty-space"></div>
 
-  <div className="nav-icons">
-    <span>🔔</span>
-    <span>🌐</span>
-    <span>👤</span>
-  </div>
-</nav>
+        <div className="search-box">
+
+          <FaSearch className="search-icon" />
+
+          <input
+            type="text"
+            placeholder="Search books, authors..."
+          />
+
+        </div>
+
+        <div className="nav-icons">
+
+          <FaBell />
+
+          <FaBookmark />
+
+          <FaUserCircle />
+
+        </div>
+
+      </div>
+
+      {/* Bottom Row */}
+
+      <div className="navbar-bottom">
+
+        <div className="logo">
+
+          <img src={logo} alt="ReadSphere" />
+
+        </div>
+
+        <ul className="nav-links">
+
+          <li>Home</li>
+
+          <li>Browse Books</li>
+
+          <li>Borrowed Books</li>
+
+        </ul>
+
+      </div>
+
+    </header>
   );
 }
 
