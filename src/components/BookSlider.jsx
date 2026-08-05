@@ -1,35 +1,24 @@
-import "./BookSlider.css";
-import BookCard from "./BookCard";
+import "./BookCard.css";
 
-import deepWork from "../assets/deep work.jpg";
-import atomic from "../assets/atomic.jpg";
-import cleanCode from "../assets/clean code.jpg";
-
-function BookSlider() {
+function BookCard({ image, title, description, color }) {
   return (
-    <section className="book-slider">
-      <BookCard
-        image={deepWork}
-        title="Explore Books"
-        description="Browse books by title, author or genre. Borrow and manage your reading with ease."
-        color="#6E8DA7"
-      />
+    <div className="book-card">
+      <div className="book-cover">
+        <img src={image} alt={title} />
+      </div>
 
-      <BookCard
-        image={atomic}
-        title="Atomic Habits"
-        description="A practical guide to building good habits and breaking bad ones."
-        color="#735197"
-      />
+      <div
+        className="book-content"
+        style={{ backgroundColor: color }}
+      >
+        <h3>{title}</h3>
 
-      <BookCard
-        image={cleanCode}
-        title="Clean Code"
-        description="Learn the principles of writing clean, maintainable code."
-        color="#965774"
-      />
-    </section>
+        <p>{description}</p>
+
+        <button>View Details</button>
+      </div>
+    </div>
   );
 }
 
-export default BookSlider;
+export default BookCard;

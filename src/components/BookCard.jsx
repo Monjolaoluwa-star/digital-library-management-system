@@ -3,7 +3,6 @@ import "./BookCard.css";
 function BookCard({ image, title, description, color }) {
   return (
     <div className="book-card">
-
       <div className="book-cover">
         <img src={image} alt={title} />
       </div>
@@ -17,9 +16,7 @@ function BookCard({ image, title, description, color }) {
         <p>{description}</p>
 
         <button>View Details</button>
-
       </div>
-
     </div>
   );
 }
