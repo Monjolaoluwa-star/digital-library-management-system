@@ -1,0 +1,170 @@
+.login-box {
+  width: 100%;
+  max-width: 420px;
+}
+
+.login-box h2 {
+  font-size: 34px;
+  color: #1E293B;
+  margin: 0 0 8px;
+}
+
+.login-text {
+  color: #64748B;
+  margin-bottom: 28px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.form-group input {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  border: 2px solid #DCE8FF;
+  border-radius: 12px;
+  font-size: 15px;
+  outline: none;
+  background: white;
+  color: #1E293B;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #5C9DFF;
+  box-shadow: 0 0 0 4px rgba(92, 157, 255, 0.12);
+}
+
+.form-group input::placeholder {
+  color: #94A3B8;
+}
+
+.password-field {
+  position: relative;
+  width: 100%;
+}
+
+.password-field input {
+  padding-right: 50px;
+}
+
+.eye-btn {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 19px;
+  color: #7C8BA1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 22px 0;
+  font-size: 14px;
+  gap: 15px;
+}
+
+.login-row label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #64748B;
+}
+
+.login-row input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  accent-color: #5C9DFF;
+}
+
+.login-row a {
+  text-decoration: none;
+  color: #4B89F7;
+  font-weight: 600;
+}
+
+.login-button {
+  width: 100%;
+  height: 54px;
+  border: none;
+  border-radius: 12px;
+  background: #5C9DFF;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-button:hover {
+  background: #4A89F0;
+  transform: translateY(-1px);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #E2E8F0;
+}
+
+.divider span {
+  padding: 0 15px;
+  color: #94A3B8;
+  font-size: 13px;
+}
+
+.google-btn {
+  width: 100%;
+  height: 52px;
+  border: 2px solid #DCE8FF;
+  background: white;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #334155;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.google-btn:hover {
+  background: #F8FAFC;
+}
+
+.signup-text {
+  margin-top: 25px;
+  text-align: center;
+  color: #64748B;
+  font-size: 14px;
+}
+
+.signup-text a {
+  margin-left: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  color: #5C9DFF;
+}

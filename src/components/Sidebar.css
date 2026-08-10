@@ -1,16 +1,18 @@
 .sidebar{
 
-    width:240px;
+    width:250px;
 
     background:#262222;
 
-    border:1px solid #3A3434;
+    border:1px solid #373232;
 
-    border-radius:8px;
+    border-radius:12px;
 
-    padding:18px;
+    padding:24px;
 
     height:fit-content;
+
+    margin-top:15px;
 }
 
 .sidebar-search{

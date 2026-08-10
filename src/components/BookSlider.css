@@ -1,22 +1,116 @@
 .book-slider {
-
-    width: 100%;
-
-    background: #383232;
-
-    padding: 45px 0 55px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 60px 20px;
+  background: transparent;
+  box-sizing: border-box;
 }
 
-.book-slider {
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 55px;
+.slider-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
 }
 
-.book-slider > * {
+.slide-card {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
 
-    flex-shrink: 0;
+/* Book Covers */
+
+.slide-card img {
+  width: 130px;
+  height: 190px;
+  object-fit: cover;
+  z-index: 2;
+}
+
+/* Information Cards */
+
+.book-info {
+  width: 220px;
+  min-height: 180px;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  color: white;
+  overflow: hidden;
+  margin-left: -8px;
+  border-radius: 0 12px 12px 0;
+
+  font-family: "Philosopher", serif;
+}
+
+.book-info h3 {
+  font-size: 22px;
+  margin: 0 0 10px;
+  font-weight: 600;
+  font-family: "Philosopher", serif;
+}
+
+.book-info p {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 18px;
+  font-family: "Philosopher", serif;
+}
+
+/* Navigation Buttons */
+
+.slider-button {
+  width: fit-content;
+  padding: 8px 18px;
+
+  background: transparent;
+  border: 1px solid #fff;
+  color: white;
+
+  border-radius: 6px;
+  cursor: pointer;
+
+  font-size: 12px;
+  font-family: "Philosopher", serif;
+  text-decoration: none;
+
+  display: inline-block;
+
+  transition: 0.3s;
+}
+
+.slider-button:hover {
+  background: white;
+  color: black;
+}
+
+/* Card Colours */
+
+.slide-card:nth-child(1) .book-info {
+  background: #3E6078;
+}
+
+.slide-card:nth-child(2) .book-info {
+  background: #6B568C;
+}
+
+.slide-card:nth-child(3) .book-info {
+  background: #86536A;
+}
+
+/* Book Tilt */
+
+.slide-card:nth-child(1) img {
+  transform: rotate(-5deg);
+}
+
+.slide-card:nth-child(2) img {
+  transform: rotate(3deg);
+}
+
+.slide-card:nth-child(3) img {
+  transform: rotate(-4deg);
 }

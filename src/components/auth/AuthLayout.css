@@ -1,0 +1,195 @@
+/* ================================
+   AUTH LAYOUT
+================================ */
+
+.auth-layout {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  background: #f8fafc;
+  font-family: "Philosopher", serif;
+}
+
+
+/* ================================
+   LEFT SIDE
+================================ */
+
+.auth-left {
+  position: relative;
+  width: 45%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px;
+  box-sizing: border-box;
+
+  background: #edf5ff;
+}
+
+
+/* ================================
+   TEXT LOGO
+================================ */
+
+.auth-brand {
+  position: absolute;
+
+  top: 65px;
+  left: 70px;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  letter-spacing: -1px;
+
+  z-index: 5;
+}
+
+.brand-read {
+  color: #2583f7;
+}
+
+.brand-sphere {
+  color: #1e293b;
+  margin-left: 2px;
+}
+
+
+/* ================================
+   ILLUSTRATION
+================================ */
+
+.auth-illustration {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+
+  object-fit: contain;
+
+  margin-top: 70px;
+}
+
+
+/* ================================
+   RIGHT SIDE
+================================ */
+
+.auth-right {
+  width: 55%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 50px;
+  box-sizing: border-box;
+
+  background: #f8fafc;
+}
+
+
+/* ================================
+   FORM CONTENT
+================================ */
+
+.auth-content {
+  width: 100%;
+  max-width: 540px;
+}
+
+
+/* ================================
+   PAGE TITLE
+================================ */
+
+.auth-title {
+  font-size: 38px;
+  color: #1e293b;
+
+  margin: 0 0 10px;
+
+  line-height: 1.2;
+}
+
+
+/* ================================
+   SUBTITLE
+================================ */
+
+.auth-subtitle {
+  color: #64748b;
+
+  font-size: 15px;
+
+  margin: 0 0 30px;
+
+  line-height: 1.6;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+
+  .auth-layout {
+    flex-direction: column;
+  }
+
+  .auth-left,
+  .auth-right {
+    width: 100%;
+  }
+
+  .auth-left {
+    min-height: 320px;
+    padding: 30px;
+  }
+
+  .auth-brand {
+    top: 35px;
+    left: 40px;
+  }
+
+  .auth-illustration {
+    max-width: 360px;
+    margin-top: 65px;
+  }
+
+  .auth-right {
+    min-height: auto;
+    padding: 40px 25px;
+  }
+}
+
+
+@media (max-width: 500px) {
+
+  .auth-left {
+    min-height: 270px;
+  }
+
+  .auth-brand {
+    top: 28px;
+    left: 28px;
+    font-size: 24px;
+  }
+
+  .auth-illustration {
+    max-width: 300px;
+  }
+
+  .auth-right {
+    padding: 30px 20px;
+  }
+
+  .auth-title {
+    font-size: 30px;
+  }
+}

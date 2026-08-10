@@ -1,62 +1,80 @@
 import "./Navbar.css";
 import logo from "../assets/ReadSpherelogo.png";
-
+import { Link } from "react-router-dom";
 import {
-  FaSearch,
-  FaBell,
-  FaBookmark,
-  FaUserCircle,
-} from "react-icons/fa";
+  FiHeart,
+  FiBell,
+  FiShoppingBag,
+  FiSearch,
+} from "react-icons/fi";
 
 function Navbar() {
   return (
     <header className="navbar">
 
-      {/* Top Row */}
-      <div className="navbar-top">
+      {/* TOP BAR */}
+      <div className="top-navbar">
 
-        <div className="empty-space"></div>
+        <div className="logo">
+          <img
+            src={logo}
+            alt="ReadSphere Logo"
+            className="logo-image"
+          />
+        </div>
 
-        <div className="search-box">
-
-          <FaSearch className="search-icon" />
+        <div className="search-bar">
+          <FiSearch className="search-icon" />
 
           <input
             type="text"
             placeholder="Search books, authors..."
           />
-
         </div>
 
         <div className="nav-icons">
 
-          <FaBell />
+          <FiHeart />
+          <FiBell />
+          <FiShoppingBag />
 
-          <FaBookmark />
+          {/* Profile Image */}
+          <img
+            src="https://i.pravatar.cc/100"
+            alt="Profile"
+            className="profile"
+          />
 
-          <FaUserCircle />
+          {/* Login Button */}
+          <Link to="/login" className="login-link">
+            Login
+          </Link>
 
         </div>
 
       </div>
 
-      {/* Bottom Row */}
 
-      <div className="navbar-bottom">
-
-        <div className="logo">
-
-          <img src={logo} alt="ReadSphere" />
-
-        </div>
+      {/* BOTTOM BAR */}
+      <div className="bottom-navbar">
 
         <ul className="nav-links">
 
-          <li>Home</li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
 
-          <li>Browse Books</li>
+          <li>
+            <Link to="/browse">Browse</Link>
+          </li>
 
-          <li>Borrowed Books</li>
+          <li>
+            <Link to="/categories">Categories</Link>
+          </li>
+
+          <li>
+            <Link to="/borrowed">Borrowed</Link>
+          </li>
 
         </ul>
 

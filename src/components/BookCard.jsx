@@ -1,22 +1,64 @@
-import "./BookCard.css";
+import { Link } from "react-router-dom";
 
-function BookCard({ image, title, description, color }) {
+function BookCard({ book, toggleBorrowStatus }) {
   return (
     <div className="book-card">
-      <div className="book-cover">
-        <img src={image} alt={title} />
-      </div>
 
-      <div
-        className="book-content"
-        style={{ backgroundColor: color }}
+      {/* Book Cover */}
+      <img
+        src={book.cover}
+        alt={book.title}
+        className="book-image"
+      />
+
+      {/* Book Title */}
+      <h3 className="book-title">
+        {book.title}
+      </h3>
+
+      {/* Author */}
+      <p className="book-author">
+        {book.author}
+      </p>
+
+      {/* Status */}
+      <span
+        className={
+          book.status === "Available"
+            ? "status available"
+            : "status borrowed"
+        }
       >
-        <h3>{title}</h3>
+        {book.status}
+      </span>
 
-        <p>{description}</p>
+      {/* Genre and Year */}
+      <p className="book-info">
+        {book.genre} • {book.year}
+      </p>
 
-        <button>View Details</button>
-      </div>
+      {/* Borrow / Return */}
+      <button
+        className={
+          book.status === "Available"
+            ? "borrow-btn"
+            : "borrow-btn return-btn"
+        }
+        onClick={() => toggleBorrowStatus(book.id)}
+      >
+        {book.status === "Available"
+          ? "Borrow Book"
+          : "Return Book"}
+      </button>
+
+      {/* View Details */}
+      <Link
+        to={`/books/${book.id}`}
+        className="details-btn"
+      >
+        View Details
+      </Link>
+
     </div>
   );
 }

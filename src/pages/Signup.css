@@ -1,0 +1,153 @@
+.signup-box {
+  width: 100%;
+  max-width: 420px;
+}
+
+.signup-box h2 {
+  font-size: 34px;
+  color: #1E293B;
+  margin: 0 0 8px;
+}
+
+.signup-text-top {
+  color: #64748B;
+  margin-bottom: 24px;
+}
+
+.signup-box .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.signup-box .form-group label {
+  margin-bottom: 7px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.signup-box .form-group input {
+  width: 100%;
+  height: 50px;
+  padding: 0 16px;
+
+  border: 2px solid #DCE8FF;
+  border-radius: 12px;
+
+  font-size: 15px;
+
+  outline: none;
+  background: white;
+  color: #1E293B;
+
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+.signup-box .form-group input:focus {
+  border-color: #5C9DFF;
+  box-shadow: 0 0 0 4px rgba(92, 157, 255, 0.12);
+}
+
+.signup-box .form-group input::placeholder {
+  color: #94A3B8;
+}
+
+
+/* PASSWORD */
+
+.signup-box .password-field {
+  position: relative;
+  width: 100%;
+}
+
+.signup-box .password-field input {
+  padding-right: 50px;
+}
+
+.signup-box .eye-btn {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  background: none;
+  border: none;
+
+  cursor: pointer;
+
+  font-size: 19px;
+  color: #7C8BA1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* TERMS */
+
+.terms-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin: 5px 0 20px;
+
+  color: #64748B;
+  font-size: 13px;
+}
+
+.terms-checkbox input {
+  width: 15px;
+  height: 15px;
+  accent-color: #5C9DFF;
+}
+
+
+/* SIGNUP BUTTON */
+
+.signup-button {
+  width: 100%;
+  height: 54px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #5C9DFF;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.signup-button:hover {
+  background: #4A89F0;
+  transform: translateY(-1px);
+}
+
+
+/* LOGIN LINK */
+
+.already-account {
+  margin-top: 22px;
+
+  text-align: center;
+
+  color: #64748B;
+  font-size: 14px;
+}
+
+.already-account a {
+  margin-left: 6px;
+
+  text-decoration: none;
+
+  font-weight: 700;
+  color: #5C9DFF;
+}

@@ -7,24 +7,60 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import BrowseBooks from "./pages/BrowseBooks";
 import BookDetails from "./pages/BookDetails";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import ForgotPassword from "./pages/ForgotPassword";
 import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <>
-      {/* Navbar stays visible on every page */}
-      <Navbar />
+    <Routes>
 
-      <Routes>
-        <Route path="/" element={<Home />} />
+      {/* Pages WITH Navbar */}
+      <Route
+        path="/"
+        element={
+          <>
+            <Navbar />
+            <Home />
+          </>
+        }
+      />
 
-        <Route path="/browse" element={<BrowseBooks />} />
+      <Route
+        path="/browse"
+        element={
+          <>
+            <Navbar />
+            <BrowseBooks />
+          </>
+        }
+      />
 
-        <Route path="/books/:id" element={<BookDetails />} />
+      <Route
+        path="/books/:id"
+        element={
+          <>
+            <Navbar />
+            <BookDetails />
+          </>
+        }
+      />
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </>
+      {/* Authentication pages WITHOUT Navbar */}
+      <Route path="/login" element={<Login />} />
+
+      <Route path="/signup" element={<Signup />} />
+
+      <Route
+        path="/forgot-password"
+        element={<ForgotPassword />}
+      />
+
+      {/* 404 */}
+      <Route path="*" element={<NotFound />} />
+
+    </Routes>
   );
 }
 

@@ -1,24 +1,39 @@
 .home{
 
-    background:#1F1D1D;
-
     min-height:100vh;
+
+    background:#181616;
 }
+
+/* Main Content */
 
 .main-content{
 
     max-width:1280px;
 
-    margin:auto;
+    margin:0 auto;
 
     display:flex;
 
-    gap:45px;
+    gap:40px;
 
-    padding:45px 60px 80px;
+    padding:35px 60px 80px;
+
+    align-items:flex-start;
+
+    box-sizing:border-box;
 }
+
+/* Right Side */
 
 .books-content{
 
     flex:1;
+
+    min-width:0;
+}
+.home{
+    background:#181616;
+    min-height:100vh;
+    padding-top:130px;
 }
