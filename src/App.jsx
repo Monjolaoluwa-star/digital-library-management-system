@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 // Components
 import Navbar from "./components/Navbar";
+import BookCRUD from "./components/BookCRUD";
 
 // Pages
 import Home from "./pages/Home";
@@ -43,6 +44,17 @@ function App() {
           <>
             <Navbar />
             <BookDetails />
+          </>
+        }
+      />
+
+      {/* Book Management / CRUD */}
+      <Route
+        path="/book-management"
+        element={
+          <>
+            <Navbar />
+            <BookCRUD />
           </>
         }
       />
