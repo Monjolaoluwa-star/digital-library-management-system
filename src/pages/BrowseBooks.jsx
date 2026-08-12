@@ -1,170 +1,198 @@
-import { useState } from "react";
-import books from "../data/books";
+import { useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+
 import BookCard from "../components/BookCard";
-import SearchBar from "../components/SearchBar";
-import FilterPanel from "../components/FilterPanel";
-import SortDropdown from "../components/SortDropdown";
 
-function BrowseBooks() {
+import books from "../data/books";
 
-  // Create a copy of our books that React can update.
-  const [libraryBooks, setLibraryBooks] = useState(books);
-  // React remembers what the user types
-  const [searchText, setSearchText] = useState("");
+function BrowseBooks({
+  libraryBooks = books,
+  toggleBorrowStatus,
+}) {
+  const [searchParams] = useSearchParams();
 
-  // React remembers the selected genre
-  const [selectedGenre, setSelectedGenre] = useState("All");
+  const initialSearch =
+    searchParams.get("search") || "";
 
-  // React remembers how the user wants the books sorted
-  const [sortOption, setSortOption] = useState("A-Z");
+  const [searchText, setSearchText] =
+    useState(initialSearch);
 
-   const toggleBorrowStatus = (id) => {
+  const [selectedGenre, setSelectedGenre] =
+    useState("");
 
-    // Update the books array
-    setLibraryBooks(
+  const [sortOption, setSortOption] =
+    useState("default");
 
-      // Loop through every book
-      libraryBooks.map((book) => {
+  const displayedBooks = useMemo(() => {
+    let result = [...libraryBooks];
 
-        // If this is NOT the clicked book,
-        // leave it exactly as it is.
-        if (book.id !== id) {
-          return book;
-        }
+    const search = searchText
+      .toLowerCase()
+      .trim();
 
-        // Otherwise create a NEW version
-        // of the clicked book.
-        return {
+    if (search) {
+      result = result.filter(
+        (book) =>
+          book.title
+            .toLowerCase()
+            .includes(search) ||
+          book.author
+            .toLowerCase()
+            .includes(search)
+      );
+    }
 
-          // Copy everything from the old book.
-          ...book,
+    if (selectedGenre) {
+      result = result.filter(
+        (book) =>
+          book.genre === selectedGenre
+      );
+    }
 
-          // Change ONLY the status.
-          status:
-            book.status === "Available"
-              ? "Borrowed"
-              : "Available"
+    if (sortOption === "title-asc") {
+      result.sort((a, b) =>
+        a.title.localeCompare(b.title)
+      );
+    }
 
-        };
+    if (sortOption === "title-desc") {
+      result.sort((a, b) =>
+        b.title.localeCompare(a.title)
+      );
+    }
 
-      })
+    if (sortOption === "year-new") {
+      result.sort(
+        (a, b) => b.year - a.year
+      );
+    }
 
-    );
+    if (sortOption === "year-old") {
+      result.sort(
+        (a, b) => a.year - b.year
+      );
+    }
 
-  };
+    return result;
+  }, [
+    libraryBooks,
+    searchText,
+    selectedGenre,
+    sortOption,
+  ]);
 
-  const filteredBooks = libraryBooks.filter((book) => {
-
-  // Convert the search text to lowercase
-  const search = searchText.toLowerCase();
-
-  // Check if the book title or author matches the search
-  const matchesSearch =
-    book.title.toLowerCase().includes(search) ||
-    book.author.toLowerCase().includes(search);
-
-  // Check if the genre matches
-  const matchesGenre =
-    selectedGenre === "All" ||
-    book.genre === selectedGenre;
-
-  // Keep the book only if both conditions are true
-  return matchesSearch && matchesGenre;
-});
-
-// Create a copy of the filtered books before sorting.
-// We use [...filteredBooks] so we don't change the original array.
-const sortedBooks = [...filteredBooks];
-
-if (sortOption === "A-Z") {
-  sortedBooks.sort((a, b) => a.title.localeCompare(b.title));
-}
-
-if (sortOption === "Z-A") {
-  sortedBooks.sort((a, b) => b.title.localeCompare(a.title));
-}
-
-if (sortOption === "Newest") {
-  sortedBooks.sort((a, b) => b.year - a.year);
-}
-
-if (sortOption === "Oldest") {
-  sortedBooks.sort((a, b) => a.year - b.year);
-}
+  const genres = [
+    ...new Set(
+      libraryBooks.map((book) => book.genre)
+    ),
+  ];
 
   return (
     <main className="browse-books">
 
-    <div className="browse-header">
+      <div className="browse-header">
 
-  <div>
+        <div>
+          <h1 className="browse-title">
+            Browse Books
+          </h1>
 
-    <h1 className="browse-title">
-      Browse Books
-    </h1>
+          <p className="browse-subtitle">
+            Discover books from different
+            authors, genres and categories.
+          </p>
+        </div>
 
-    <p className="browse-subtitle">
-      Discover books across different genres, search by title or author, and explore your next great read.
-    </p>
+        <div className="book-count">
+          {displayedBooks.length} Books
+        </div>
 
-  </div>
+      </div>
 
-  <div className="book-count">
+      <div className="controls">
 
-    {sortedBooks.length}
+        <input
+          type="text"
+          placeholder="Search books or authors..."
+          value={searchText}
+          onChange={(event) =>
+            setSearchText(event.target.value)
+          }
+        />
 
-    {sortedBooks.length === 1 ? " Book" : " Books"}
+        <select
+          value={selectedGenre}
+          onChange={(event) =>
+            setSelectedGenre(event.target.value)
+          }
+        >
+          <option value="">
+            All Genres
+          </option>
 
-  </div>
+          {genres.map((genre) => (
+            <option
+              key={genre}
+              value={genre}
+            >
+              {genre}
+            </option>
+          ))}
+        </select>
 
-</div>
+        <select
+          value={sortOption}
+          onChange={(event) =>
+            setSortOption(event.target.value)
+          }
+        >
+          <option value="default">
+            Sort By
+          </option>
 
-  <div className="controls">
+          <option value="title-asc">
+            Title A-Z
+          </option>
 
-  <SearchBar
-    searchText={searchText}
-    setSearchText={setSearchText}
-  />
+          <option value="title-desc">
+            Title Z-A
+          </option>
 
-  <FilterPanel
-    selectedGenre={selectedGenre}
-    setSelectedGenre={setSelectedGenre}
-  />
+          <option value="year-new">
+            Newest
+          </option>
 
-   <SortDropdown
-    sortOption={sortOption}
-    setSortOption={setSortOption}
-  />
+          <option value="year-old">
+            Oldest
+          </option>
+        </select>
 
-  </div>
+      </div>
 
       <div className="books-grid">
 
-      {sortedBooks.length > 0 ? (
+        {displayedBooks.length > 0 ? (
+          displayedBooks.map((book) => (
+            <BookCard
+              key={book.id}
+              book={book}
+              toggleBorrowStatus={
+                toggleBorrowStatus
+              }
+            />
+          ))
+        ) : (
+          <div className="no-books">
+            <h2>No books found 📚</h2>
 
-     sortedBooks.map((book) => (
-      <BookCard
-        key={book.id}
-        book={book}
-        toggleBorrowStatus={toggleBorrowStatus}
-      />
-    ))
+            <p>
+              Try another search or filter.
+            </p>
+          </div>
+        )}
 
-  ) : (
+      </div>
 
-    <div className="no-books">
-
-      <h2>No books found 📚</h2>
-
-      <p>
-        Try searching for another title or choose a different genre.
-      </p>
-
-    </div>
-
-  )}
-
-</div>
     </main>
   );
 }

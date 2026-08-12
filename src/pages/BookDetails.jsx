@@ -1,62 +1,90 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+
 import books from "../data/books";
 
-function BookDetails() {
 
-  // Read the id from the URL
+function BookDetails({ libraryBooks = books }) {
+
   const { id } = useParams();
 
-  // Find the matching book
-  const book = books.find((book) => book.id === Number(id));
 
-  // If no book matches the URL, show a friendly message.
- if (!book) {
-  return (
-    <main className="book-details">
-      <h1>Book Not Found</h1>
-      <p>
-        Sorry, we couldn't find the book you're looking for.
-      </p>
-    </main>
+  const book = libraryBooks.find(
+    (item) => item.id === Number(id)
   );
-}  
+
+
+  if (!book) {
+
+    return (
+
+      <main className="book-details not-found-details">
+
+        <h1>Book Not Found</h1>
+
+        <p>
+          Sorry, we couldn't find the book you're looking for.
+        </p>
+
+        <Link
+          to="/browse"
+          className="details-btn"
+        >
+          Back to Browse
+        </Link>
+
+      </main>
+    );
+  }
+
 
   return (
 
     <main className="book-details">
 
-      {/* Book Cover */}
       <img
         src={book.cover}
         alt={book.title}
         className="details-image"
       />
 
-      {/* Book Information */}
+
       <div className="details-content">
 
         <h1>{book.title}</h1>
 
         <p>
-          <strong>Author:</strong> {book.author}
+          <strong>Author:</strong>{" "}
+          {book.author}
         </p>
 
         <p>
-          <strong>Genre:</strong> {book.genre}
+          <strong>Genre:</strong>{" "}
+          {book.genre}
         </p>
 
         <p>
-          <strong>Published:</strong> {book.year}
+          <strong>Published:</strong>{" "}
+          {book.year}
         </p>
 
         <p>
-          <strong>Status:</strong> {book.status}
+          <strong>Status:</strong>{" "}
+          {book.status}
         </p>
+
+
+        <Link
+          to="/browse"
+          className="details-btn"
+        >
+          Back to Browse
+        </Link>
 
       </div>
 
     </main>
-
   );
 }
+
+
 export default BookDetails;

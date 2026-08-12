@@ -1,39 +1,116 @@
-.home{
+/* ===========================
+   HOME PAGE
+=========================== */
 
-    min-height:100vh;
+.home {
+  width: 100%;
+  min-height: 100vh;
 
-    background:#181616;
+  background: #18181b;
+
+  color: white;
 }
 
-/* Main Content */
 
-.main-content{
+/* ===========================
+   MAIN CONTENT
+=========================== */
 
-    max-width:1280px;
+.main-content {
+  width: 100%;
 
-    margin:0 auto;
+  display: flex;
+  align-items: flex-start;
 
-    display:flex;
+  gap: 50px;
 
-    gap:40px;
-
-    padding:35px 60px 80px;
-
-    align-items:flex-start;
-
-    box-sizing:border-box;
+  padding: 38px 40px 60px;
 }
 
-/* Right Side */
 
-.books-content{
+/* ===========================
+   SIDEBAR
+=========================== */
 
-    flex:1;
+.sidebar {
+  width: 325px;
 
-    min-width:0;
+  flex-shrink: 0;
 }
-.home{
-    background:#181616;
-    min-height:100vh;
-    padding-top:130px;
+
+
+/* ===========================
+   BOOK CONTENT
+=========================== */
+
+.books-content {
+  flex: 1;
+
+  min-width: 0;
+}
+
+
+/* ===========================
+   TABLET
+=========================== */
+
+@media (max-width: 1100px) {
+  .main-content {
+    gap: 30px;
+
+    padding: 35px 25px 55px;
+  }
+
+  .sidebar {
+    width: 260px;
+  }
+}
+
+
+/* ===========================
+   SMALL TABLET
+=========================== */
+
+@media (max-width: 850px) {
+  .main-content {
+    gap: 25px;
+  }
+
+  .sidebar {
+    width: 235px;
+  }
+}
+
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width: 700px) {
+  .main-content {
+    flex-direction: column;
+
+    gap: 30px;
+
+    padding: 28px 18px 45px;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .books-content {
+    width: 100%;
+  }
+}
+
+
+/* ===========================
+   SMALL MOBILE
+=========================== */
+
+@media (max-width: 450px) {
+  .main-content {
+    padding: 25px 14px 40px;
+  }
 }

@@ -1,44 +1,138 @@
-.featured-books{
-    margin-bottom:40px;
+/* ===========================
+   FEATURED BOOKS
+=========================== */
+
+.featured-books {
+  width: 100%;
+  margin-bottom: 45px;
 }
 
-.featured-books h2{
-    font-family:"Philosopher", serif;
-    font-size:42px;
-    font-weight:700;
-    color:#FFFFFF;
-    margin-bottom:8px;
-    letter-spacing:0.3px;
+.featured-books h2 {
+  margin: 0 0 8px;
+
+  font-family: "Philosopher", serif;
+  font-size: 42px;
+  font-weight: 700;
+
+  color: #ffffff;
+
+  letter-spacing: 0.3px;
 }
 
-.featured-books p{
-    width:520px;
-    color:#BDBDBD;
-    font-size:15px;
-    line-height:1.7;
+.featured-books > p {
+  width: 100%;
+  max-width: 650px;
+
+  margin: 0;
+
+  color: #bdbdbd;
+
+  font-size: 15px;
+  line-height: 1.7;
 }
-.featured-details-btn {
-  width: 125px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
-  box-sizing: border-box;
 
-  background: transparent;
-  border: 1px solid white;
+/* ===========================
+   FIVE BOOKS PER ROW
+=========================== */
+
+.featured-books-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+
+  gap: 28px 22px;
+
+  margin-top: 28px;
+}
+
+
+/* ===========================
+   EMPTY STATE
+=========================== */
+
+.featured-empty {
+  grid-column: 1 / -1;
+
+  padding: 50px 20px;
+
+  text-align: center;
+}
+
+.featured-empty h3 {
+  margin-bottom: 8px;
+
   color: white;
 
-  border-radius: 5px;
-
-  text-decoration: none;
-  font-size: 13px;
-
-  transition: 0.3s;
+  font-size: 24px;
 }
 
-.featured-details-btn:hover {
-  background: white;
-  color: black;
+.featured-empty p {
+  color: #9f9f9f;
+}
+
+
+/* ===========================
+   TABLET
+=========================== */
+
+@media (max-width: 1200px) {
+  .featured-books-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+
+/* ===========================
+   SMALL TABLET
+=========================== */
+
+@media (max-width: 950px) {
+  .featured-books-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 25px 18px;
+  }
+
+  .featured-books h2 {
+    font-size: 38px;
+  }
+}
+
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width: 700px) {
+  .featured-books-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px 15px;
+  }
+
+  .featured-books h2 {
+    font-size: 34px;
+  }
+
+  .featured-books > p {
+    font-size: 14px;
+  }
+}
+
+
+/* ===========================
+   SMALL MOBILE
+=========================== */
+
+@media (max-width: 450px) {
+  .featured-books-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-books h2 {
+    font-size: 30px;
+  }
 }
