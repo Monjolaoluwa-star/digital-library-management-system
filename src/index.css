@@ -21,6 +21,7 @@ body,
   overflow-x: hidden;
 }
 
+
 /* ===========================
    BROWSE BOOKS
 =========================== */
@@ -63,6 +64,28 @@ body,
   box-shadow: 0 10px 30px rgba(79, 124, 255, 0.35);
 }
 
+
+/* ===========================
+   BROWSE BOOKS LAYOUT
+=========================== */
+
+.browse-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 20px 40px;
+}
+
+.browse-sidebar {
+  flex: 0 0 250px;
+}
+
+.browse-content {
+  flex: 1;
+  min-width: 0;
+}
+
+
 /* ===========================
    SEARCH / FILTER / SORT
 =========================== */
@@ -103,17 +126,23 @@ body,
   color: #b3b3c6;
 }
 
+
 /* ===========================
    BOOK GRID
 =========================== */
 
 .books-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
-  justify-content: center;
-  gap: 25px;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(320px, 1fr)
+  );
+
+  gap: 30px;
   margin-top: 30px;
+  width: 100%;
 }
+
 
 /* ===========================
    BOOK CARD
@@ -173,6 +202,7 @@ body,
   margin-bottom: 20px;
 }
 
+
 /* ===========================
    STATUS
 =========================== */
@@ -196,30 +226,6 @@ body,
   color: #d62b2b;
 }
 
-/* ===========================
-   BORROW / RETURN BUTTON
-=========================== */
-
-.borrow-btn {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: 700;
-  transition: 0.3s;
-  background: #22c55e;
-  color: white;
-  margin-bottom: 12px;
-}
-
-.borrow-btn:hover {
-  transform: translateY(-2px);
-}
-
-.return-btn {
-  background: #ef4444;
-}
 
 /* ===========================
    VIEW DETAILS
@@ -245,6 +251,46 @@ body,
   box-shadow: 0 10px 25px rgba(79, 124, 255, 0.45);
 }
 
+
+/* ===========================
+   BORROW / RETURN BUTTON
+=========================== */
+
+.borrow-btn {
+  width: 125px;
+  height: 36px;
+
+  background: #536dfe;
+  border: none;
+
+  color: white;
+  font-family: "Philosopher", serif;
+  font-size: 14px;
+  font-weight: 600;
+
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+
+  margin-bottom: 10px;
+}
+
+.borrow-btn:hover {
+  background: #3f51e5;
+  transform: translateY(-2px);
+}
+
+.return-btn {
+  background: #555;
+}
+
+.return-btn:hover {
+  background: #333;
+}
+
+
 /* ===========================
    NO BOOKS
 =========================== */
@@ -266,9 +312,6 @@ body,
   font-size: 18px;
 }
 
-/* ===========================
-   BOOK DETAILS
-=========================== */
 
 /* ===========================
    BOOK DETAILS
@@ -276,56 +319,38 @@ body,
 
 .book-details {
   display: flex;
-
   gap: 55px;
-
   padding: 70px 6% 80px;
-
   min-height: 600px;
-
   align-items: flex-start;
-
   flex-wrap: wrap;
-
   color: white;
 }
 
 .details-image {
   width: 300px;
-
   max-width: 100%;
-
   border-radius: 15px;
-
-  box-shadow:
-    0 15px 35px rgba(0,0,0,0.4);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 .details-content {
   flex: 1;
-
   min-width: 280px;
-
   text-align: left;
-
   padding-top: 10px;
 }
 
 .details-content h1 {
   margin: 0 0 25px;
-
   color: white;
-
   font-size: 42px;
 }
 
 .details-content p {
   margin: 18px 0;
-
   color: #d5d5d5;
-
   font-size: 18px;
-
   line-height: 1.6;
 }
 
@@ -335,16 +360,12 @@ body,
 
 .not-found-details {
   flex-direction: column;
-
   align-items: center;
-
   justify-content: center;
-
   text-align: center;
 }
 
 .not-found-details .details-btn {
   width: 180px;
-
   margin-top: 20px;
 }

@@ -2,6 +2,9 @@ import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import BookCard from "../components/BookCard";
+import FilterPanel from "../components/FilterPanel";
+import SortDropdown from "../components/SortDropdown";
+import Sidebar from "../components/Sidebar";
 
 import books from "../data/books";
 
@@ -17,6 +20,9 @@ function BrowseBooks({
   const [searchText, setSearchText] =
     useState(initialSearch);
 
+  const [selectedCategories, setSelectedCategories] =
+    useState([]);
+
   const [selectedGenre, setSelectedGenre] =
     useState("");
 
@@ -30,6 +36,7 @@ function BrowseBooks({
       .toLowerCase()
       .trim();
 
+    /* SEARCH */
     if (search) {
       result = result.filter(
         (book) =>
@@ -42,6 +49,14 @@ function BrowseBooks({
       );
     }
 
+    /* SIDEBAR CATEGORY FILTER */
+    if (selectedCategories.length > 0) {
+      result = result.filter((book) =>
+        selectedCategories.includes(book.genre)
+      );
+    }
+
+    /* DROPDOWN GENRE FILTER */
     if (selectedGenre) {
       result = result.filter(
         (book) =>
@@ -49,6 +64,7 @@ function BrowseBooks({
       );
     }
 
+    /* SORTING */
     if (sortOption === "title-asc") {
       result.sort((a, b) =>
         a.title.localeCompare(b.title)
@@ -77,6 +93,7 @@ function BrowseBooks({
   }, [
     libraryBooks,
     searchText,
+    selectedCategories,
     selectedGenre,
     sortOption,
   ]);
@@ -90,106 +107,105 @@ function BrowseBooks({
   return (
     <main className="browse-books">
 
-      <div className="browse-header">
+      <div className="browse-layout">
 
-        <div>
-          <h1 className="browse-title">
-            Browse Books
-          </h1>
+        {/* SIDEBAR */}
+        <div className="browse-sidebar">
 
-          <p className="browse-subtitle">
-            Discover books from different
-            authors, genres and categories.
-          </p>
+          <Sidebar
+            selectedCategories={selectedCategories}
+            setSelectedCategories={
+              setSelectedCategories
+            }
+            searchText={searchText}
+            setSearchText={setSearchText}
+          />
+
         </div>
 
-        <div className="book-count">
-          {displayedBooks.length} Books
-        </div>
+        {/* MAIN CONTENT */}
+        <div className="browse-content">
 
-      </div>
+          {/* HEADER */}
+          <div className="browse-header">
 
-      <div className="controls">
+            <div>
 
-        <input
-          type="text"
-          placeholder="Search books or authors..."
-          value={searchText}
-          onChange={(event) =>
-            setSearchText(event.target.value)
-          }
-        />
+              <h1 className="browse-title">
+                Browse Books
+              </h1>
 
-        <select
-          value={selectedGenre}
-          onChange={(event) =>
-            setSelectedGenre(event.target.value)
-          }
-        >
-          <option value="">
-            All Genres
-          </option>
+              <p className="browse-subtitle">
+                Discover books from different
+                authors, genres and categories.
+              </p>
 
-          {genres.map((genre) => (
-            <option
-              key={genre}
-              value={genre}
-            >
-              {genre}
-            </option>
-          ))}
-        </select>
+            </div>
 
-        <select
-          value={sortOption}
-          onChange={(event) =>
-            setSortOption(event.target.value)
-          }
-        >
-          <option value="default">
-            Sort By
-          </option>
+            <div className="book-count">
+              {displayedBooks.length}
+              {displayedBooks.length === 1
+                ? " Book"
+                : " Books"}
+            </div>
 
-          <option value="title-asc">
-            Title A-Z
-          </option>
-
-          <option value="title-desc">
-            Title Z-A
-          </option>
-
-          <option value="year-new">
-            Newest
-          </option>
-
-          <option value="year-old">
-            Oldest
-          </option>
-        </select>
-
-      </div>
-
-      <div className="books-grid">
-
-        {displayedBooks.length > 0 ? (
-          displayedBooks.map((book) => (
-            <BookCard
-              key={book.id}
-              book={book}
-              toggleBorrowStatus={
-                toggleBorrowStatus
-              }
-            />
-          ))
-        ) : (
-          <div className="no-books">
-            <h2>No books found 📚</h2>
-
-            <p>
-              Try another search or filter.
-            </p>
           </div>
-        )}
+
+
+          {/* CONTROLS */}
+          <div className="controls">
+
+            <FilterPanel
+              selectedGenre={selectedGenre}
+              setSelectedGenre={setSelectedGenre}
+            />
+
+            <SortDropdown
+              sortOption={sortOption}
+              setSortOption={setSortOption}
+            />
+
+          </div>
+
+
+          {/* BOOK GRID */}
+          <div className="books-grid">
+
+            {displayedBooks.length > 0 ? (
+
+              displayedBooks.map((book) => (
+
+                <BookCard
+                  key={book.id}
+                  book={book}
+                  toggleBorrowStatus={
+                    toggleBorrowStatus
+                  }
+                />
+
+              ))
+
+            ) : (
+
+              <div className="no-books">
+
+                <h2>
+                  No books found 📚
+                </h2>
+
+                <p>
+                  Try searching for another
+                  title or choose a different
+                  category.
+                </p>
+
+              </div>
+
+            )}
+
+          </div>
+
+        </div>
 
       </div>
 

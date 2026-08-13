@@ -13,6 +13,8 @@
     height:fit-content;
 
     margin-top:15px;
+
+    box-sizing: border-box;
 }
 
 .sidebar-search{
@@ -93,4 +95,22 @@
 .sidebar-section input{
 
     accent-color:#2F80ED;
+}
+
+/* Sidebar + Browse Books Layout */
+
+.browse-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 20px 40px;
+}
+
+.browse-sidebar {
+    flex: 0 0 250px;
+}
+
+.browse-content {
+    flex: 1;
+    min-width: 0;
 }

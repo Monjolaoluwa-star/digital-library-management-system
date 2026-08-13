@@ -1,127 +1,215 @@
+/* =========================
+   BOOK CARD
+========================= */
+
 .book-card {
+  background: #2f2d46;
+  border-radius: 14px;
+  padding: 22px;
+  width: 100%;
+  max-width: 355px;
+  min-height: 430px;
 
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 
-    align-items: center;
+  box-sizing: border-box;
 
-    position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-    width: 355px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
-/* ---------------- BOOK ---------------- */
-
-.book-cover {
-
-    position: relative;
-
-    z-index: 2;
-
-    margin-right: -28px;
+.book-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
 }
 
-.book-cover img {
 
-    width: 125px;
+/* =========================
+   BOOK COVER
+========================= */
 
-    height: 185px;
+.book-image {
+  width: 170px;
+  height: 240px;
 
-    object-fit: cover;
+  object-fit: cover;
 
-    border-radius: 4px;
+  border-radius: 10px;
 
-    transform: rotate(-7deg);
+  margin-bottom: 18px;
 
-    box-shadow:
-        0 12px 28px rgba(0,0,0,.45);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+
+  transition: transform 0.3s ease;
 }
 
-/* Fake spine */
-
-.book-cover::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: -6px;
-
-    top: 7px;
-
-    width: 7px;
-
-    height: 170px;
-
-    background: #D7D7D7;
-
-    border-radius: 2px;
-
-    z-index: -1;
+.book-card:hover .book-image {
+  transform: scale(1.04);
 }
 
-/* ---------------- CARD ---------------- */
 
-.book-content {
+/* =========================
+   TITLE
+========================= */
 
-    width: 245px;
+.book-title {
+  color: white;
 
-    height: 165px;
+  font-family: "Philosopher", serif;
 
-    padding: 22px 22px 22px 40px;
+  font-size: 24px;
+  font-weight: 700;
 
-    border-radius: 8px;
+  margin: 8px 0;
 
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
+  min-height: auto;
 }
 
-.book-content h3 {
 
-    color: white;
+/* =========================
+   AUTHOR
+========================= */
 
-    font-family: "Philosopher", serif;
+.book-author {
+  color: #d2d2d2;
 
-    font-size: 24px;
+  font-size: 16px;
 
-    margin: 0 0 12px;
+  margin: 4px 0 10px;
 }
 
-.book-content p {
 
-    color: #F2F2F2;
+/* =========================
+   STATUS
+========================= */
 
-    font-size: 13px;
+.status {
+  display: inline-block;
 
-    line-height: 1.6;
+  padding: 7px 16px;
 
-    margin: 0 0 18px;
+  border-radius: 50px;
+
+  font-size: 13px;
+  font-weight: bold;
+
+  margin: 5px 0 10px;
 }
 
-.book-content button {
-
-    width: 125px;
-
-    height: 36px;
-
-    background: transparent;
-
-    border: 1px solid white;
-
-    color: white;
-
-    border-radius: 5px;
-
-    cursor: pointer;
-
-    transition: .3s;
+.available {
+  background: #d8ffe3;
+  color: #0d8f45;
 }
 
-.book-content button:hover {
+.borrowed {
+  background: #ffd8d8;
+  color: #d62b2b;
+}
 
-    background: white;
 
-    color: black;
+/* =========================
+   GENRE + YEAR
+========================= */
+
+.book-info {
+  color: #bbbbbb;
+
+  font-size: 14px;
+
+  margin: 4px 0 15px;
+}
+
+
+.borrow-btn:hover {
+  background: #3f51e5;
+  transform: translateY(-2px);
+}
+
+/* =========================
+   RETURN BUTTON
+========================= */
+
+.return-btn {
+  background: #555;
+}
+
+.return-btn:hover {
+  background: #333;
+}
+
+
+/* =========================
+   VIEW DETAILS
+========================= */
+
+.details-btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 125px;
+  height: 36px;
+
+  margin-top: 8px;
+
+  background: transparent;
+
+  border: 1px solid white;
+  border-radius: 5px;
+
+  color: white;
+
+  text-decoration: none;
+
+  font-family: "Philosopher", serif;
+  font-size: 13px;
+
+  transition: 0.3s ease;
+}
+
+.details-btn:hover {
+  background: white;
+  color: black;
+
+  transform: translateY(-2px);
+}
+
+.borrow-btn {
+  width: 125px !important;
+  height: 36px !important;
+
+  background: #536dfe !important;
+  color: white !important;
+
+  border: none !important;
+  border-radius: 5px !important;
+
+  font-family: "Philosopher", serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+
+  cursor: pointer !important;
+
+  margin: 0 0 10px 0 !important;
+  padding: 0 !important;
+
+  transition: 0.3s ease !important;
+}
+
+.borrow-btn:hover {
+  background: #3f51e5 !important;
+  transform: translateY(-2px);
+}
+
+.return-btn {
+  background: #555 !important;
+}
+
+.return-btn:hover {
+  background: #333 !important;
 }

@@ -1,75 +1,69 @@
 import { Link } from "react-router-dom";
 
-
 function BookCard({
   book,
   toggleBorrowStatus,
 }) {
-
   return (
-
     <div className="book-card">
 
-      <img
-        src={book.cover}
-        alt={book.title}
-        className="book-image"
-      />
+      {/* Book Cover */}
+      <div className="book-cover">
+        <img
+          src={book.cover}
+          alt={book.title}
+        />
+      </div>
 
+      {/* Book Information */}
+      <div className="book-content">
 
-      <h3 className="book-title">
-        {book.title}
-      </h3>
+        <h3>{book.title}</h3>
 
+        <p>
+          {book.author}
+          <br />
+          {book.genre} • {book.year}
+        </p>
 
-      <p className="book-author">
-        {book.author}
-      </p>
+        {/* Status */}
+        <span
+          className={
+            book.status === "Available"
+              ? "status available"
+              : "status borrowed"
+          }
+        >
+          {book.status}
+        </span>
 
+        {/* Borrow / Return */}
+        <button
+          type="button"
+          className={
+            book.status === "Available"
+              ? "borrow-btn"
+              : "borrow-btn return-btn"
+          }
+          onClick={() => toggleBorrowStatus(book.id)}
+        >
+          {book.status === "Available"
+            ? "Borrow Book"
+            : "Return Book"}
+        </button>
 
-      <span
-        className={
-          book.status === "Available"
-            ? "status available"
-            : "status borrowed"
-        }
-      >
-        {book.status}
-      </span>
+        {/* View Details */}
+        <Link
+          to={`/books/${book.id}`}
+          className="details-btn"
+        >
+          View Details
+        </Link>
 
-
-      <p className="book-info">
-        {book.genre} • {book.year}
-      </p>
-
-
-      <button
-        type="button"
-        className={
-          book.status === "Available"
-            ? "borrow-btn"
-            : "borrow-btn return-btn"
-        }
-        onClick={() =>
-          toggleBorrowStatus(book.id)
-        }
-      >
-        {book.status === "Available"
-          ? "Borrow Book"
-          : "Return Book"}
-      </button>
-
-
-      <Link
-        to={`/books/${book.id}`}
-        className="details-btn"
-      >
-        View Details
-      </Link>
+      </div>
 
     </div>
   );
 }
-
 
 export default BookCard;
