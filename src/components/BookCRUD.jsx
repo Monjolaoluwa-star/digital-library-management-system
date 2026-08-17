@@ -1,8 +1,7 @@
 import { useState } from "react";
 import "./BookCRUD.css";
 
-function BookCRUD() {
-  const [books, setBooks] = useState([
+const defaultBooks = [
   {
     id: 1,
     title: "Things Fall Apart",
@@ -33,23 +32,66 @@ function BookCRUD() {
     author: "Tara Westover",
     category: "Biography",
   },
-]);
+];
 
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const [category, setCategory] = useState("");
-  const [editingId, setEditingId] = useState(null);
+function BookCRUD() {
+
+  const [books, setBooks] = useState(() => {
+
+    const savedBooks =
+      localStorage.getItem("readsphereCrudBooks");
+
+    return savedBooks
+      ? JSON.parse(savedBooks)
+      : defaultBooks;
+  });
+
+
+  const [title, setTitle] =
+    useState("");
+
+  const [author, setAuthor] =
+    useState("");
+
+  const [category, setCategory] =
+    useState("");
+
+  const [editingId, setEditingId] =
+    useState(null);
+
+
+  const saveBooks = (updatedBooks) => {
+
+    setBooks(updatedBooks);
+
+    localStorage.setItem(
+      "readsphereCrudBooks",
+      JSON.stringify(updatedBooks)
+    );
+  };
+
 
   const handleSubmit = (e) => {
+
     e.preventDefault();
 
-    if (!title.trim() || !author.trim() || !category.trim()) {
-      alert("Please fill all fields.");
+    if (
+      !title.trim() ||
+      !author.trim() ||
+      !category.trim()
+    ) {
+
+      alert(
+        "Please fill all fields."
+      );
+
       return;
     }
 
+
     if (editingId !== null) {
-      setBooks(
+
+      const updatedBooks =
         books.map((book) =>
           book.id === editingId
             ? {
@@ -59,11 +101,14 @@ function BookCRUD() {
                 category: category.trim(),
               }
             : book
-        )
-      );
+        );
+
+      saveBooks(updatedBooks);
 
       setEditingId(null);
+
     } else {
+
       const newBook = {
         id: Date.now(),
         title: title.trim(),
@@ -71,90 +116,154 @@ function BookCRUD() {
         category: category.trim(),
       };
 
-      setBooks([...books, newBook]);
+      saveBooks([
+        ...books,
+        newBook,
+      ]);
     }
+
 
     setTitle("");
     setAuthor("");
     setCategory("");
   };
 
+
   const editBook = (book) => {
+
     setTitle(book.title);
     setAuthor(book.author);
     setCategory(book.category);
     setEditingId(book.id);
   };
 
-  const deleteBook = (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this book?"
-    );
 
-    if (confirmDelete) {
-      setBooks(books.filter((book) => book.id !== id));
+  const deleteBook = (id) => {
+
+    const confirmDelete =
+      window.confirm(
+        "Are you sure you want to delete this book?"
+      );
+
+    if (!confirmDelete) {
+      return;
     }
+
+    const updatedBooks =
+      books.filter(
+        (book) => book.id !== id
+      );
+
+    saveBooks(updatedBooks);
   };
 
+
   const cancelEdit = () => {
+
     setEditingId(null);
     setTitle("");
     setAuthor("");
     setCategory("");
   };
 
+
   return (
+
     <main className="crud-page">
+
       <div className="crud-container">
 
+
         <div className="crud-header">
-          <h1>Book Management</h1>
+
+          <h1>
+            Book Management
+          </h1>
+
           <p>
-            Add, edit and manage books in the ReadSphere library.
+            Add, edit and manage books
+            in the ReadSphere library.
           </p>
+
         </div>
 
-        <form className="crud-form" onSubmit={handleSubmit}>
+
+        <form
+          className="crud-form"
+          onSubmit={handleSubmit}
+        >
 
           <div className="crud-field">
-            <label htmlFor="book-title">Book Title</label>
+
+            <label htmlFor="book-title">
+              Book Title
+            </label>
+
             <input
               id="book-title"
               type="text"
               placeholder="Enter book title"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) =>
+                setTitle(e.target.value)
+              }
             />
+
           </div>
 
+
           <div className="crud-field">
-            <label htmlFor="book-author">Author</label>
+
+            <label htmlFor="book-author">
+              Author
+            </label>
+
             <input
               id="book-author"
               type="text"
               placeholder="Enter author name"
               value={author}
-              onChange={(e) => setAuthor(e.target.value)}
+              onChange={(e) =>
+                setAuthor(e.target.value)
+              }
             />
+
           </div>
 
+
           <div className="crud-field">
-            <label htmlFor="book-category">Category</label>
+
+            <label htmlFor="book-category">
+              Category
+            </label>
+
             <input
               id="book-category"
               type="text"
               placeholder="Enter book category"
               value={category}
-              onChange={(e) => setCategory(e.target.value)}
+              onChange={(e) =>
+                setCategory(e.target.value)
+              }
             />
+
           </div>
 
+
           <div className="crud-form-actions">
-            <button type="submit" className="crud-submit-btn">
-              {editingId !== null ? "Update Book" : "Add Book"}
+
+            <button
+              type="submit"
+              className="crud-submit-btn"
+            >
+              {editingId !== null
+                ? "Update Book"
+                : "Add Book"}
             </button>
 
+
             {editingId !== null && (
+
               <button
                 type="button"
                 className="crud-cancel-btn"
@@ -162,55 +271,98 @@ function BookCRUD() {
               >
                 Cancel
               </button>
+
             )}
+
           </div>
+
         </form>
 
+
         <section className="crud-books-section">
+
           <div className="crud-section-heading">
-            <h2>Books</h2>
-            <span>{books.length} books</span>
+
+            <h2>
+              Books
+            </h2>
+
+            <span>
+              {books.length} books
+            </span>
+
           </div>
 
+
           <div className="crud-books-list">
+
             {books.map((book) => (
-              <article className="crud-book-card" key={book.id}>
+
+              <article
+                className="crud-book-card"
+                key={book.id}
+              >
 
                 <div className="crud-book-info">
-                  <h3>{book.title}</h3>
+
+                  <h3>
+                    {book.title}
+                  </h3>
+
                   <p>
-                    <strong>Author:</strong> {book.author}
+                    <strong>
+                      Author:
+                    </strong>{" "}
+                    {book.author}
                   </p>
+
                   <p>
-                    <strong>Category:</strong> {book.category}
+                    <strong>
+                      Category:
+                    </strong>{" "}
+                    {book.category}
                   </p>
+
                 </div>
 
+
                 <div className="crud-actions">
+
                   <button
                     type="button"
                     className="crud-edit-btn"
-                    onClick={() => editBook(book)}
+                    onClick={() =>
+                      editBook(book)
+                    }
                   >
                     Edit
                   </button>
 
+
                   <button
                     type="button"
                     className="crud-delete-btn"
-                    onClick={() => deleteBook(book.id)}
+                    onClick={() =>
+                      deleteBook(book.id)
+                    }
                   >
                     Delete
                   </button>
+
                 </div>
 
               </article>
+
             ))}
+
           </div>
+
         </section>
 
       </div>
+
     </main>
+
   );
 }
 

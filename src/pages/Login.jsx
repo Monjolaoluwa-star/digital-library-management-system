@@ -1,30 +1,86 @@
 import "./Login.css";
+
 import AuthLayout from "../components/auth/AuthLayout";
-import { Link, useNavigate } from "react-router-dom";
+
+import {
+  Link,
+  useNavigate,
+} from "react-router-dom";
+
 import { useState } from "react";
-import { FiEye, FiEyeOff } from "react-icons/fi";
+
+import {
+  FiEye,
+  FiEyeOff,
+} from "react-icons/fi";
+
+import { loginUser } from "../auth";
+
 
 function Login() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
+  const [showPassword, setShowPassword] =
+    useState(false);
+
+  const [email, setEmail] =
+    useState("");
+
+  const [password, setPassword] =
+    useState("");
+
+  const [error, setError] =
+    useState("");
+
+  const [loading, setLoading] =
+    useState(false);
+
+  const navigate =
+    useNavigate();
+
 
   const handleLogin = (e) => {
+
     e.preventDefault();
 
-    // Basic validation
+    setError("");
+
     if (!email || !password) {
-      alert("Please enter your email and password.");
+
+      setError(
+        "Please enter your email and password."
+      );
+
       return;
     }
 
-    // For now, simulate a successful login
-    navigate("/");
+    setLoading(true);
+
+    try {
+
+      loginUser(
+        email,
+        password
+      );
+
+      navigate("/");
+
+    } catch (error) {
+
+      setError(
+        error.message
+      );
+
+    } finally {
+
+      setLoading(false);
+
+    }
+
   };
 
+
   return (
+
     <AuthLayout
       title="Welcome Back 👋"
       subtitle="Continue your reading journey with ReadSphere."
@@ -38,51 +94,100 @@ function Login() {
           Sign in to your account
         </p>
 
+
+        {error && (
+          <p className="auth-error">
+            {error}
+          </p>
+        )}
+
+
         <form onSubmit={handleLogin}>
 
+
           {/* EMAIL */}
+
           <div className="form-group">
-            <label>Email Address</label>
+
+            <label>
+              Email Address
+            </label>
 
             <input
               type="email"
               placeholder="Enter your email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) =>
+                setEmail(
+                  e.target.value
+                )
+              }
             />
+
           </div>
 
+
           {/* PASSWORD */}
+
           <div className="form-group">
-            <label>Password</label>
+
+            <label>
+              Password
+            </label>
 
             <div className="password-field">
 
               <input
-                type={showPassword ? "text" : "password"}
+                type={
+                  showPassword
+                    ? "text"
+                    : "password"
+                }
                 placeholder="Enter your password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) =>
+                  setPassword(
+                    e.target.value
+                  )
+                }
               />
 
               <button
                 type="button"
                 className="eye-btn"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() =>
+                  setShowPassword(
+                    !showPassword
+                  )
+                }
               >
-                {showPassword ? <FiEyeOff /> : <FiEye />}
+
+                {showPassword
+                  ? <FiEyeOff />
+                  : <FiEye />
+                }
+
               </button>
 
             </div>
+
           </div>
 
+
           {/* REMEMBER / FORGOT */}
+
           <div className="login-row">
 
             <label>
-              <input type="checkbox" />
+
+              <input
+                type="checkbox"
+              />
+
               Remember Me
+
             </label>
+
 
             <Link to="/forgot-password">
               Forgot Password?
@@ -90,43 +195,44 @@ function Login() {
 
           </div>
 
+
           {/* LOGIN */}
+
           <button
             type="submit"
             className="login-button"
+            disabled={loading}
           >
-            Login
+
+            {loading
+              ? "Logging in..."
+              : "Login"
+            }
+
           </button>
 
         </form>
 
-        {/* DIVIDER */}
-        <div className="divider">
-          <span>OR</span>
-        </div>
-
-        {/* GOOGLE */}
-       <button
-  type="button"
-  className="google-btn"
-  onClick={() => alert("Google login will be available soon.")}
->
-  Continue with Google
-</button>
 
         {/* SIGN UP */}
+
         <p className="signup-text">
+
           Don't have an account?
 
           <Link to="/signup">
             Sign Up
           </Link>
+
         </p>
 
       </div>
 
     </AuthLayout>
+
   );
+
 }
+
 
 export default Login;

@@ -21,7 +21,6 @@ import books from "./data/books";
 
 /* ===========================
    STANDARD LAYOUT
-   Navbar + Page + Footer
 =========================== */
 
 function StandardLayout({ children }) {
@@ -41,8 +40,6 @@ function StandardLayout({ children }) {
 
 /* ===========================
    AUTH LAYOUT
-   NO NAVBAR
-   FOOTER ONLY
 =========================== */
 
 function AuthLayout({ children }) {
@@ -63,7 +60,18 @@ function AuthLayout({ children }) {
 =========================== */
 
 function App() {
-  const [libraryBooks, setLibraryBooks] = useState(books);
+
+  const [libraryBooks, setLibraryBooks] = useState(() => {
+
+    const savedBooks =
+      localStorage.getItem("readsphereBooks");
+
+    if (savedBooks) {
+      return JSON.parse(savedBooks);
+    }
+
+    return books;
+  });
 
 
   /* ===========================
@@ -71,21 +79,38 @@ function App() {
   =========================== */
 
   const toggleBorrowStatus = (id) => {
-    setLibraryBooks((currentBooks) =>
-      currentBooks.map((book) => {
-        if (book.id !== id) {
-          return book;
-        }
 
-        return {
-          ...book,
-          status:
-            book.status === "Available"
-              ? "Borrowed"
-              : "Available",
-        };
-      })
-    );
+    setLibraryBooks((currentBooks) => {
+
+      const updatedBooks =
+        currentBooks.map((book) => {
+
+          if (book.id !== id) {
+            return book;
+          }
+
+          return {
+            ...book,
+
+            status:
+              book.status === "Available"
+                ? "Borrowed"
+                : "Available",
+          };
+
+        });
+
+
+      localStorage.setItem(
+        "readsphereBooks",
+        JSON.stringify(updatedBooks)
+      );
+
+
+      return updatedBooks;
+
+    });
+
   };
 
 
@@ -94,10 +119,6 @@ function App() {
       <ScrollToTop />
 
       <Routes>
-
-        {/* =========================
-            HOME
-        ========================= */}
 
         <Route
           path="/"
@@ -109,26 +130,20 @@ function App() {
         />
 
 
-        {/* =========================
-            BROWSE
-        ========================= */}
-
         <Route
           path="/browse"
           element={
             <StandardLayout>
               <BrowseBooks
                 libraryBooks={libraryBooks}
-                toggleBorrowStatus={toggleBorrowStatus}
+                toggleBorrowStatus={
+                  toggleBorrowStatus
+                }
               />
             </StandardLayout>
           }
         />
 
-
-        {/* =========================
-            BOOK DETAILS
-        ========================= */}
 
         <Route
           path="/books/:id"
@@ -142,10 +157,6 @@ function App() {
         />
 
 
-        {/* =========================
-            CATEGORIES
-        ========================= */}
-
         <Route
           path="/categories"
           element={
@@ -156,27 +167,20 @@ function App() {
         />
 
 
-        {/* =========================
-            BORROWED BOOKS
-        ========================= */}
-
         <Route
           path="/borrowed"
           element={
             <StandardLayout>
               <BorrowedBooks
                 libraryBooks={libraryBooks}
-                toggleBorrowStatus={toggleBorrowStatus}
+                toggleBorrowStatus={
+                  toggleBorrowStatus
+                }
               />
             </StandardLayout>
           }
         />
 
-
-        {/* =========================
-            TEAMMATE CRUD
-            UNTOUCHED
-        ========================= */}
 
         <Route
           path="/book-management"
@@ -188,11 +192,6 @@ function App() {
         />
 
 
-        {/* =========================
-            LOGIN
-            NO NAVBAR
-        ========================= */}
-
         <Route
           path="/login"
           element={
@@ -202,11 +201,6 @@ function App() {
           }
         />
 
-
-        {/* =========================
-            SIGNUP
-            NO NAVBAR
-        ========================= */}
 
         <Route
           path="/signup"
@@ -218,11 +212,6 @@ function App() {
         />
 
 
-        {/* =========================
-            FORGOT PASSWORD
-            NO NAVBAR
-        ========================= */}
-
         <Route
           path="/forgot-password"
           element={
@@ -232,10 +221,6 @@ function App() {
           }
         />
 
-
-        {/* =========================
-            404
-        ========================= */}
 
         <Route
           path="*"
@@ -250,5 +235,6 @@ function App() {
     </>
   );
 }
+
 
 export default App;
