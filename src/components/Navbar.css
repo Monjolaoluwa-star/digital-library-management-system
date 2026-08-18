@@ -63,7 +63,6 @@
   display: flex;
   align-items: center;
 
-  /* Dark search bar */
   background: #18181b;
 
   border: 1px solid #3a3838;
@@ -256,14 +255,20 @@
 
 
 /* =========================
-   LOGIN
+   LOGIN / LOGOUT
 ========================= */
 
 .login-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   color: white;
+  background: transparent;
 
   text-decoration: none;
 
+  font-family: inherit;
   font-size: 14px;
   font-weight: 600;
 
@@ -273,12 +278,20 @@
 
   border-radius: 6px;
 
-  transition: 0.2s ease;
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .login-link:hover {
   background: white;
   color: #2b2626;
+  border-color: white;
 }
 
 

@@ -4,9 +4,18 @@
   box-sizing: border-box;
 }
 
+html {
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
 body {
+  width: 100%;
+  min-height: 100vh;
   background: #18181B;
   font-family: "Philosopher", serif;
+  overflow-x: hidden;
 }
 
 #root {
@@ -14,11 +23,14 @@ body {
   min-height: 100vh;
 }
 
-html,
-body,
-#root {
+
+/* ===========================
+   MAIN PAGE CONTENT
+=========================== */
+
+.page-content {
   width: 100%;
-  overflow-x: hidden;
+  min-height: 100vh;
 }
 
 
@@ -27,7 +39,8 @@ body,
 =========================== */
 
 .browse-books {
-  padding: 150px 40px 40px;
+  width: 100%;
+  padding: 70px 40px 40px;
   color: white;
 }
 
@@ -368,4 +381,100 @@ body,
 .not-found-details .details-btn {
   width: 180px;
   margin-top: 20px;
+}
+
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 900px) {
+
+  .browse-books {
+    padding: 60px 25px 30px;
+  }
+
+  .browse-layout {
+    padding: 20px 0;
+  }
+
+  .browse-title {
+    font-size: 40px;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .browse-books {
+    padding: 45px 18px 25px;
+  }
+
+  .browse-layout {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .browse-sidebar {
+    width: 100%;
+    flex: none;
+  }
+
+  .browse-title {
+    font-size: 34px;
+  }
+
+  .browse-subtitle {
+    font-size: 15px;
+  }
+
+  .books-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .book-details {
+    padding: 50px 25px 60px;
+    gap: 30px;
+  }
+
+  .details-content h1 {
+    font-size: 34px;
+  }
+
+}
+
+
+@media (max-width: 450px) {
+
+  .browse-books {
+    padding: 35px 14px 20px;
+  }
+
+  .browse-title {
+    font-size: 30px;
+  }
+
+  .browse-layout {
+    padding: 10px 0;
+  }
+
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .book-details {
+    padding: 35px 18px 50px;
+  }
+
+  .details-image {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .details-content h1 {
+    font-size: 30px;
+  }
+
 }

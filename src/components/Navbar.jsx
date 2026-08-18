@@ -14,12 +14,18 @@ import {
   FiSearch,
 } from "react-icons/fi";
 
+import {
+  getCurrentUser,
+  logoutUser,
+} from "../auth";
+
 function Navbar() {
   const navigate = useNavigate();
 
   const [searchText, setSearchText] = useState("");
   const [liked, setLiked] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
+  const [currentUser, setCurrentUser] = useState(getCurrentUser());
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -32,6 +38,12 @@ function Navbar() {
     }
 
     navigate(`/browse?search=${encodeURIComponent(query)}`);
+  };
+
+  const handleLogout = () => {
+    logoutUser();
+    setCurrentUser(null);
+    navigate("/");
   };
 
   return (
@@ -121,7 +133,9 @@ function Navbar() {
           <button
             type="button"
             className="profile-button"
-            onClick={() => navigate("/login")}
+            onClick={() =>
+              navigate(currentUser ? "/profile" : "/login")
+            }
             aria-label="Profile"
             title="Profile"
           >
@@ -132,13 +146,23 @@ function Navbar() {
             />
           </button>
 
-          {/* LOGIN */}
-          <Link
-            to="/login"
-            className="login-link"
-          >
-            Login
-          </Link>
+          {/* LOGIN / LOGOUT */}
+          {currentUser ? (
+            <button
+              type="button"
+              className="login-link"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="login-link"
+            >
+              Login
+            </Link>
+          )}
 
         </div>
       </div>
